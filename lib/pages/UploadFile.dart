@@ -67,8 +67,31 @@ class _UploadFileState extends State<UploadFile> {
                         color: Colors.green[900],
                       ),
                       onTap: () {
-                        _auth.signOut();
-                        Navigator.pushNamed(context, 'welcome_Screen');
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Log Out"),
+                                content: Text(
+                                    "Do you really want to log out from PDF Translator?"),
+                                actions: [
+                                  TextButton(
+                                    child: Text("Yes"),
+                                    onPressed: () {
+                                      _auth.signOut();
+                                      Navigator.pushNamed(
+                                          context, 'welcome_Screen');
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text("Cancel"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              );
+                            });
                       },
                     ),
                   ),
