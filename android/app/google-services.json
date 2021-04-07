@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566909517645",
+    "project_id": "pdf-translator-53473",
+    "storage_bucket": "pdf-translator-53473.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566909517645:android:4db438a015f2dc4ffec104",
+        "android_client_info": {
+          "package_name": "com.gopisakhi.pdf_translator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566909517645-s3vi524sipck9u924v9ulcrjmga2p1qd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKeinLACjAnJ3ZoVfh4Qmt1wFYkquLLio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566909517645-s3vi524sipck9u924v9ulcrjmga2p1qd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
