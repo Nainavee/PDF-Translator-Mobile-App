@@ -6,6 +6,8 @@ import 'package:pdf_translator/pages/Signup.dart';
 import 'package:pdf_translator/pages/Welcome.dart';
 import 'package:pdf_translator/pages/UploadFile.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pdf_translator/pages/Translation_Page.dart';
+import 'package:pdf_translator/pages/Final.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +25,8 @@ class HomePage extends StatelessWidget {
         'login_Screen': (context) => Login(),
         'Sign_up': (context) => SignUp(),
         'Upload_File': (context) => UploadFile(),
+        'Translation_page':(context) =>Translation(),
+        'Translated_page':(context) =>Translated(),
       },
       debugShowCheckedModeBanner: false,
     );

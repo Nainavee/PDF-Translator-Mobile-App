@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_translator/components/Rounded_Button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
+import 'package:pdf_translator/pages/Translation_Page.dart';
 
 class UploadFile extends StatefulWidget {
   @override
@@ -9,8 +12,45 @@ class UploadFile extends StatefulWidget {
 }
 
 class _UploadFileState extends State<UploadFile> {
+  String name = '';
+  String path = '';
+  String size = '';
+  String _directoryPath = '';
+  String nm = 'No Files Selected';
+  //String nm1 = 'One File Selected';
+  bool _loadingPath = false;
+  bool press = true;
   final _auth = FirebaseAuth.instance;
   User loggedInUser;
+  FilePickerResult _paths;
+  PlatformFile file;
+
+  void _openFileExplorer() async {
+    setState(() => _loadingPath = true);
+    try {
+      _directoryPath = ' ';
+       _paths = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+    } on PlatformException catch (e) {
+      print("Unsupported operation" + e.toString());
+    } catch (ex) {
+      print(ex);
+    }
+    setState(() {
+      file = _paths.files.first;
+      print('data..................');
+      print(file.name);
+      print(file.bytes);
+      print(file.size);
+      print(file.extension);
+      print(file.path);
+      _loadingPath = false;
+      press = false;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -121,16 +161,32 @@ class _UploadFileState extends State<UploadFile> {
                         ),
                       ),
                       RoundedButton(
-                        title: 'Upload File',
+                        title: press ? 'Upload File' : 'Proceed To Translate',
                         colour: Color(0xff27cf8b),
                         fontSize: 30,
-                        onPressed: () {
-                          //Navigator.pushNamed(context, 'login_Screen');
-                        },
+                        onPressed: () => press
+                            ? _openFileExplorer()
+                            : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Translation(
+                                  pdfName:file.name,
+                                   )
+                            )
+                        )
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      Builder(
+                          builder: (BuildContext context) => _loadingPath
+                              ? Padding(
+                                  padding: const EdgeInsets.only(bottom: 10.0),
+                                  child: const CircularProgressIndicator(),
+                                )
+                              : _directoryPath != null
+                                  ? ListTile(
+                                      title: const Text('Uploaded File(Pdf)'),
+                                      subtitle: Text(press ? nm : file.name),
+                                    )
+                                  : SizedBox()),
                     ],
                   ),
                 ),
