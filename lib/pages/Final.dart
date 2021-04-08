@@ -70,21 +70,32 @@ class _TranslatedState extends State<Translated> {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 100),
+                      SizedBox(height: 50),
                       Padding(
                         padding: const EdgeInsets.all(25.0),
-                        child: Text('Your Translated PDF is here!!!',
-                            style: TextStyle(
-                                color: Color(0xff2d9c6f), fontSize: 35)),
+                        child: Text(
+                          'Your Translated PDF is here!!!',
+                          style:
+                              TextStyle(color: Color(0xff2d9c6f), fontSize: 35),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       SizedBox(height: 15),
-                      Icon(Icons.picture_as_pdf_rounded,
-                          color: Colors.blueGrey, size: 50),
-                      Text(widget.pdfname,
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Color(0xff2d9c6f),
-                          )),
+                      Center(
+                        child: Icon(Icons.picture_as_pdf_rounded,
+                            color: Colors.blueGrey, size: 50),
+                      ),
+                      Text(
+                        widget.pdfname,
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Color(0xff2d9c6f),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         child: Material(

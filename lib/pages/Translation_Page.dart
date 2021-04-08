@@ -343,18 +343,18 @@ class _TranslationState extends State<Translation> {
                       }).toList(),
                     ),
                     SizedBox(height: 25),
-                    Row(
-                      children: [
-                        SizedBox(width: 180),
-                        Icon(Icons.picture_as_pdf_rounded,
-                            color: Colors.blueGrey, size: 50),
-                      ],
+                    Center(
+                      child: Icon(Icons.picture_as_pdf_rounded,
+                          color: Colors.blueGrey, size: 40),
                     ),
-                    SizedBox(height:15),
-                    Text(widget.pdfName,style:TextStyle(
-                      fontSize:25,
-                      color:Color(0xff2d9c6f),
-                    )
+                    SizedBox(height: 15),
+                    Text(
+                      widget.pdfName,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xff2d9c6f),
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -366,26 +366,24 @@ class _TranslationState extends State<Translation> {
                           onPressed: () {
                             hint || hint2
                                 ? showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                    title: Text(
-                                        'Select languages in order to translate.'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(
-                                                context, false);
-                                          },
-                                          child: Text('OK')),
-                                    ]))
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                            title: Text(
+                                                'Select languages in order to translate.'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(
+                                                        context, false);
+                                                  },
+                                                  child: Text('OK')),
+                                            ]))
                                 : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Translated(
-                                      pdfname:widget.pdfName,
-                                    )
-                                )
-                            );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Translated(
+                                              pdfname: widget.pdfName,
+                                            )));
                           },
                           minWidth: 200.0,
                           height: 42.0,
